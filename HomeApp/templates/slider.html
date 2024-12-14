@@ -1,0 +1,40 @@
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      {% for objects in propertys|divisibleby:"4" %}
+        <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+          <div class="row property-slide">
+            {% for object in objects %}
+              <div class="col-md-3">
+                <div class="card property border border-0">
+                    <div class="property-image">
+                        <img src="{{object.image.url}}" alt="" class="card-img-top">
+                    </div>
+                    <div class="property-content card-body ps-3 pt-3">
+                        <p class="description fs-5 mb-0">{{object.title}}</p>
+                        <p class="price fw-bold fs-4 mb-0">&#8377; {{object.price}} | {{object.area}} sqft</p>
+                        <p class="location fs-5">{{object.location}}</p>
+                        <div class="view-more">
+                            <a href="#" class="btn btn-outline-warning rounded-pill py-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                </div></div><div class="carousel-item">
+                <div class="row">
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon btn btn-dark rounded-circle" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+        <span class="carousel-control-next-icon btn btn-dark rounded-circle" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+  

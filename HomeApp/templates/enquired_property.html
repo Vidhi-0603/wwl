@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<div class="text-center my-5">
+  <h1>Enquired Properties</h1>
+  <p class="fs-5 mt-3">See the responses of seekers on your properties here </p>
+</div>
+
+{% for record in records %}
+<div class="card mb-5" style="max-width:70vw; margin:auto; "> 
+  <div class="row g-0 mt-3"> 
+        <div class="col-lg-5 img_div">
+            <img src="{{record.property.image.url}}" class="img-fluid rounded-start" alt="..." style="height: 250px; width:445px;"> 
+        </div> 
+        <div class="col-lg-7"> 
+            <div class="card-body" style="text-transform:uppercase;"> 
+                <h3 class="card-title"> 
+                  {{record.property.title}}
+                </h3> 
+                <p class="card-text"> 
+                    <p><b>Price:</b> {{record.property.price}}</p>
+                    <p><b>Area(sqft):</b> {{record.property.area}}</p>
+                    <p><b>Location:</b> {{record.property.city}}</p>
+                    <a href="{% url 'view_details' record.property.property_id %}" data-product="{{ property.property_id }}" class="btn btn-outline-warning p-2 fw-bold">View Details</a>
+
+                </p> 
+            </div> 
+        </div> 
+  </div> 
+  <div class="row mt-5 fs-4 mx-0">
+    <div class="col-md-4"><b>Sender Name:</b></div>
+    <div class="col-md-4"><b>Sender Contact:</b></div>
+    <div class="col-md-4"><b>Enquiry Message:</b></div>
+  </div>
+  <div class="row my-2 fs-5 mx-0">
+    <div class="col-md-4"> {{record.sender_name}}</div>
+    <div class="col-md-4"> {{record.sender_contact}}</div>
+    <div class="col-md-4"> {{record.message}}</div>
+  </div>
+
+</div> 
+
+{% endfor %}
+
+{% endblock main %} 

@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block main %}
+<style>
+  img{
+    transition: transform 0.3s ease-in-out;
+  }
+  img:hover
+  {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  .img_div
+  {
+    height: 250px;
+    overflow:hidden;
+    overflow-y: hidden;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+  body{
+    background-color: rgb(247, 229, 207);
+  }
+</style>
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<h3 class="text-center my-5">Property results based on your search</h3>
+
+  <div id="plotlisting">
+  {% for property in properties %}
+    <div class="card mb-3" style="max-width:70vw; margin:auto; height:250px;background-color:rgb(251, 240, 219);"> 
+      <div class="row g-0"> 
+            <div class="col-lg-5 img_div">
+                <img src="{{property.image.url}}" class="img-fluid rounded-start" alt="..." style="height: 248px; width:445px;"> 
+            </div> 
+            <div class="col-lg-7"> 
+                <div class="card-body" style="text-transform:uppercase;"> 
+                    <h3 class="card-title"> 
+                      {{property.title}}
+                    </h3> 
+                    <p class="card-text"> 
+                        <p><b>Price:</b> {{property.price}}</p>
+                        <p><b>Area(sqft):</b> {{property.area}}</p>
+                        <p><b>Location:</b> {{property.location}}</p>
+                        <a href="{% url 'view_details' property.property_id %}" data-product="{{ property.property_id }}" class="btn btn-outline-warning p-2 mt-0 fw-bold">View Details</a>
+                    </p> 
+                </div> 
+            </div> 
+      </div> 
+    </div>     
+  {% endfor %}
+</div> 
+{% endblock main %} 

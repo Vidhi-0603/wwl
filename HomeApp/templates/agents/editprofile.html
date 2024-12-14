@@ -1,0 +1,63 @@
+{% extends 'agents/agentdashboard.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+
+    <style>
+        .info{
+            width:45vw;
+            margin:0px auto;
+        }
+        label{
+            text-decoration: underline;
+        }
+        .info p{
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="info">
+        <u><h2 class="text-center text-warning mb-5">PROFILE</h2></u>
+
+        <form action="{% url 'editProfile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="mb-2 fw-bold fs-5">Name:</label>
+            <input type="text" name="name" class="form-control mb-3" value="{{info.agent_name}}">
+
+            <label class="mb-2 fw-bold fs-5">Contact No:</label>
+            <input type="number" name="contact" class="form-control mb-3" value="{{info.agent_contact}}">
+            
+            <label class="mb-2 fw-bold fs-5">Email:</label>
+            <input type="email" name="email" class="form-control mb-3" value="{{info.agent_email}}">
+            
+            <label class="mb-2 fw-bold fs-5">City:</label>
+            <input type="text" name="city" class="form-control mb-3" value="{{info.city}}">
+            
+            <label class="mb-2 fw-bold fs-5">Address:</label>
+            <input type="text" name="address" class="form-control mb-3" value="{{info.address}}">
+            
+            <label class="mb-2 fw-bold fs-5">Operating cities:</label>
+            <input type="text" name="Operating_cities" class="form-control mb-3" value="{{info.operating_city}}">
+            
+            <label class="mb-2 fw-bold fs-5">Operating Location:</label>
+            <input type="text" name="Operating_Location" class="form-control mb-3" value="{{info.operating_locations}}">
+            
+            <label class="mb-2 fw-bold fs-5">Areas you deal in: </label>
+            <input type="text" name="dealing_areas" class="form-control mb-3" value="{{info.deals_in}}">
+
+            <label class="mb-2 fw-bold fs-5">Operating Since:</label>
+            <input type="number" name="operating_since" class="form-control mb-3" value="{{info.operating_since}}">
+
+            <label class="mb-2 fw-bold fs-5">Image: </label>
+            {{form.image}}
+            
+            <p class="text-center"><input type="submit" value="Submit" class="btn btn-outline-warning fw-bold mt-3 mx-auto"></p>
+
+        </form>
+    </div>
+    
+
+
+{% endblock main %}

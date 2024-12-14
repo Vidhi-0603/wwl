@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+
+<style>
+    .outer
+    {
+        height:72vh;
+        width:33vw;
+        margin:0px auto;
+    }
+    .formbox
+    {
+        width:30vw;
+        margin:0px auto;
+        padding:30px 27px 20px 20px;
+        background-color: rgba(214, 202, 202, 0.75);
+        box-shadow: 3px 2px 7px rgb(111, 110, 110);
+    }
+    .regbtn:hover{
+        text-decoration: none;
+    }
+</style>
+
+<div style="height:17vh; width:100vw;"></div>
+<div class="outer mb-5">
+    <h1 class="text-center mb-4">Contact Form</h1>
+    <div class="formbox">
+        <form method="post" action="{% url 'contact_us' %}">
+            {% csrf_token %}
+            
+           {{form}}            
+            
+            <center><button class="btn btn-outline-warning my-4 fw-bold fs-6" type="submit">Submit</button></center>
+        </form>
+    </div>
+</div>
+{% endblock main %}

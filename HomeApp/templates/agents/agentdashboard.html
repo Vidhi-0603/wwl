@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+    <script src="{% static 'js/bootstrap.bundle.js' %}" rel="javascript" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+       .head{
+        font-family: "Crimson Text", serif;
+        font-weight: 800;
+        text-transform: uppercase;
+       }
+       .space
+       {
+        height:13vh;
+       }
+       .property-slide
+       {
+        width:100%;
+        height:50vh;
+       }
+       .property
+       {
+        width:100%;
+        height:100%;
+        border-radius:1.5rem;
+       }
+       .property-image
+       {
+        height:27vh;
+        overflow:hidden;
+        border-radius: 1.5rem 1.5rem 0 0;
+       }
+       .property-image img{
+        height: 100%;
+        width:100%;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+        border-radius: 1.5rem 1.5rem 0 0; 
+       }
+       .property-content
+        {
+            
+            border-radius: 0 0 1.5rem 1.5rem;
+            position:relative;
+        }
+
+        .view-more{
+            
+            display:none;
+        }
+        .view-more a{
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+       
+
+       .property:hover{
+    
+        box-shadow:5px 5px 10px rgb(84, 84, 84);
+    
+        .property-image img{
+        
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+        .location{
+            display:none;
+        }
+        .view-more{
+            display: block;
+            top:-5vh;
+        }
+    }
+    .property .property-image img 
+    {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+    </style>
+
+</head>
+<body>
+    <!-- {{user.username}} -->
+    <div class="row bg-dark mx-0 fixed-top">
+        <div class="col-sm-1 px-4 py-2">
+            <img src="{% static 'Images/agent.png' %}" alt="" style="height:60px; width:65px; border-radius:50%; border:5px solid rgb(177, 84, 84);">
+        </div>
+        <div class="col-sm-4 fs-3 text-white fw-bold pt-3">Welcome {{user.username}}</div>
+        <div class="col-sm-1 pt-3 ms-auto"><a href="{% url 'logout' %}" class="btn btn-outline-warning fw-bold">Logout</a></div>
+    </div>
+    <div style="height:65px; width:65px;"></div>
+    <!-- <div class="space"></div> -->
+    <div class="row mx-0 pt-3">
+        <div class="col-sm-2" style="position : fixed; padding: 5px 0 0 15px; height: 90vh; border-right:3px solid;">Email : {{user.email}}
+            <hr>
+            <p><a href="{% url 'agentdashboard' %}">Home</a></p>
+            <p><a href="{% url 'viewprofile' %}">View Profile</a></p>
+            <p><a href="{% url 'view_all_property' %}">View Properties</a></p>
+            <p><a href="{% url 'editProfile' %}">Edit Profile</a></p>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            {% block main %}
+                <div class="head pt-5"><h1 class="text-center">Welcome to World Wide Land</h1>
+                    <h4 class="text-center ">connect with buyers and owners worldwide </h4></div>
+                <div class="row py-5">
+                    <div class="col-sm-12">
+                        <p class="text-center fs-4 mb-4">
+                            Let seekers and owners know about you <br>
+                            <a href="{% url 'fill_profile' %}" class="fs-5 fw-bold">Profile</a>
+                        </p>
+                        <hr>
+
+                        <h3 class="text-center">PROPERTY LISTINGS</h3>
+
+                        <div>
+                            <p class="text-center fs-5">Explore wide range of properties available on WWL </p>
+
+                            <div class="row property-slide mx-0">
+                                {% for property in propertys %}
+                                    <div class="col-md-3 px-2 py-2">
+                                        <div class="card property border border-0">
+                                            <div class="property-image">
+                                                <img src="{{property.image.url}}" alt="" class="card-img-top">
+                                            </div>
+                                            <div class="property-content card-body ps-3 pt-3">
+                                                <p class="description fs-5 mb-0">{{property.title}}</p>
+                                                <p class="price fw-bold fs-5 mb-0">&#8377; {{property.price}} | {{property.area}} sqft</p>
+                                                <p class="location fs-5">{{property.location}}</p>
+                                                <div class="view-more">
+                                                    <a href="{% url 'details' property.property_id %}" data-product="{{ property.property_id }}" class="btn btn-outline-warning rounded-pill py-1">View details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <p class="text-center mt-5"><a href="{% url 'view_all_property' %}" class="btn btn-outline-warning rounded-pill py-1">View More Listings</a>
+                            </p>
+                        </div>
+
+                        
+
+                        <p>
+                            New to real estate? Here's a <a href="{% url 'beginner_guide' %}">beginner's guide</a>  <br>
+
+                        </p>
+                        
+                      
+                    </div>
+                </div>
+            {% endblock main %}
+        </div>
+    </div>
+
+</body>
+</html>

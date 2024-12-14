@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+
+<style>
+    .outer
+    {
+        height:72vh;
+        width:33vw;
+        margin:0px auto;
+    }
+    .formbox
+    {
+        width:30vw;
+        margin:0px auto;
+        padding:30px 27px 20px 20px;
+        background-color: rgba(214, 202, 202, 0.75);
+        box-shadow: 3px 2px 7px rgb(111, 110, 110);
+    }
+    .regbtn:hover{
+        text-decoration: none;
+    }
+</style>
+
+
+
+<div style="height:17vh; width:100vw;"></div>
+
+<div class="outer mb-5">
+    <h1 class="text-center mb-4">Agent Login</h1>
+    <div class="formbox">
+        <form method="post" action="{% url 'agent_login' %}">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                    {{ form.username }}
+                
+            </div>
+
+            <div class="mb-3">
+                    {{ form.password }}
+            </div>
+            
+            
+            
+            <center><button class="btn btn-outline-warning mb-2 fw-bold" type="submit">Login</button></center>
+            <hr>
+            <p class="text-center mt-3">New to World Wide Land?</p>
+            <center><a class="btn btn-outline-warning regbtn fw-bold" href="{% url 'agent_register' %}">Register</a></center>
+        </form>
+    </div>
+</div>
+{%include 'footer.html'%}
+
+{% endblock main %} 

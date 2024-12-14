@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% block main %}
+{%include 'message.html'%}
+<div style="height:20vh; width:100vw;"></div>
+<h1 class="text-center">POST YOUR PROPERTY HERE</h1>
+<div style="height:80vh; width:50vw; margin:auto;">
+    <form action="{% url 'postproperty' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="my-5">
+            <label for="type">Type:</label>
+            {{ form.type }}
+        </div>
+        
+        
+        <div class="mb-5">
+            <label for="price">Price:</label>
+            {{ form.price }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="location">Address:</label>
+            {{ form.location }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="city">City:</label>
+            {{ form.city }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="state">State:</label>
+            {{ form.state }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="title">Title:</label>
+            {{ form.title }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="area">Area(sqft):</label>
+            {{ form.area }}
+        </div>
+        
+        <div class="mb-5">
+            <label for="description">Description:</label>
+            {{ form.description}}
+            
+        </div>
+        <div class="mb-5">
+            <label for="image">Image:</label>
+            {{ form.image }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="name">Owner's Name:</label>
+            {{ form.name}}
+            
+        </div>
+        <div class="mb-5">
+            <label for="contact">Owner's Contact:</label>
+            {{ form.contact }}
+            
+        </div>
+
+        <div class="mb-5">
+            <label for="action">Action</label>
+            {{ form.action }}
+            
+        </div>
+        <div class="mb-5">
+            <label for="name">No. of Bedrooms:</label>
+            {{ form.bedrooms}}
+            
+        </div>
+        <div class="mb-5">
+            <label for="name">No. of Bathrooms:</label>
+            {{ form.bathrooms}}
+            
+        </div>
+        <div class="mb-5">
+            <label for="name">Furnished:</label>
+            {{ form.furnished}}
+            
+        </div>
+        
+        <center><button class="btn btn-outline-warning mb-5" type="submit">Upload Property</button></center>
+        
+    </form>
+</div>
+
+{% endblock main %}

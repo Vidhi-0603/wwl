@@ -1,0 +1,77 @@
+{% extends 'agents/agentdashboard.html' %}
+{% block main %}
+<style>
+  img{
+    transition: transform 0.3s ease-in-out;
+  }
+  img:hover
+  {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  .img_div
+  {
+    height: 250px;
+    overflow:hidden;
+    overflow-y: hidden;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+</style>
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<div style="height:12vh; width:100vw;"></div>
+
+<!-- <div class="row g-5" style="padding:50px 200px 50px 200px;">
+    <div class="col-md">
+        <div class="form-floating">
+            <select class="form-select border border-1 border-warning" id="city">
+              <option selected>---Select city---</option>
+              <option value="1">Lucknow</option>
+              <option value="2">Kanpur</option>
+              <option value="3">Varanasi</option>
+            </select>
+            <label for="city">Enter City</label>
+          </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select border border-1 border-warning" id="Budget">
+          <option selected>---Select Budget---</option>
+          <option value="less than 50k">less than 50k</option>
+          <option value="50k - 5lac">50k - 5lac</option>
+          <option value="5lac - 10lac">5lac - 10lac</option>
+          <option value="10lac - 50lac">10lac - 50lac</option>
+          <option value="50lac+">50lac+</option>
+        </select>
+        <label for="Budget">Enter Budget</label>
+      </div>
+    </div>
+  </div> -->
+  <div id="plotlisting">
+  {% for property in propertys %}
+  
+  <div class="card mb-3" style="max-width:70vw; margin:auto; height:250px;"> 
+    <div class="row g-0"> 
+          <div class="col-lg-5 img_div">
+              <img src="{{property.image.url}}" class="img-fluid rounded-start" alt="..." style="height: 250px; width:445px;"> 
+          </div> 
+          <div class="col-lg-7"> 
+              <div class="card-body" style="text-transform:uppercase;"> 
+                  <h3 class="card-title"> 
+                    {{property.title}}
+                  </h3> 
+                  <p class="card-text"> 
+                      <p><b>Price:</b> {{property.price}}</p>
+                      <p><b>Area(sqft):</b> {{property.area}}</p>
+                      <p><b>Location:</b> {{property.city}}</p>
+                      <a href="{% url 'details' property.property_id %}" data-product="{{ property.property_id }}" class="btn btn-outline-warning p-2 fw-bold">View Details</a>
+                  </p> 
+              </div> 
+          </div> 
+    </div> 
+  </div> 
+          
+  {% endfor %}
+</div> 
+{% endblock main %} 

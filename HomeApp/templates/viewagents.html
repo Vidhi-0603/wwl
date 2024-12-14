@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% block main %}
+
+<style>
+.agent{
+    height:49vh;
+    width:19vw;
+    border-radius:1.5rem;
+    margin-left:20px;
+}
+.agent:hover{
+    
+    box-shadow:5px 5px 10px rgb(84, 84, 84);
+
+    .agent-image img{
+    
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    .location{
+        display:none;
+    }
+    .view-more{
+        display: block;
+        top:-5vh;
+    }
+}
+.agent .agent-image img 
+{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.agent-image
+{
+    height:26vh;
+    width:19vw;
+    overflow:hidden;
+    border-radius: 1.5rem 1.5rem 0 0; 
+}
+.agent-image img{
+    height:26vh;
+    width:19vw;
+    border-radius: 1.5rem 1.5rem 0 0; 
+}
+.agent-content
+{
+    height:20vh;
+    width:19vw;
+    border-radius: 0 0 1.5rem 1.5rem;
+    position:relative;
+}
+
+a{
+    text-decoration: none;
+}
+</style>
+
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<h1 class="text-center my-5">TRUSTED AGENTS WITH WORLD WIDE LAND</h1>
+<div class="row mb-5">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="row">
+
+            {% for agent in agents %}
+            <div class="col-md-4">
+                <div class="card agent border border-1 my-3">
+                    <div class="agent-image">
+                        <img src="{{agent.image.url}}" alt="" class="card-img-top">
+                    </div>
+                    <div class="agent-content card-body ps-3 pt-3">
+                        <h5 class="card-title"><span class="fw-bold"><u>Name:</u></span> {{agent.agent_name}}</h5>
+                        <p class="card-text"><span class="fw-bold"><u>Operating since:</u></span> {{agent.operating_since}}</p>
+                        <div class="">
+                            <a href="{% url 'view_agent_details' agent.id %}" data-product="{{ agent.id }}" class="btn btn-outline-warning rounded-pill py-1 fw-bold">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="col-sm-2"></div>
+</div>
+{%include 'footer.html'%}
+
+{% endblock main %}

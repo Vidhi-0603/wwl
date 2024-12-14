@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% block main %}
+
+<style>
+    .outer
+    {
+        width:60vw;
+        margin:50px auto;
+    }
+    p
+    {
+        font-weight: 500;
+    }
+    .div1
+    {
+        height:220px;
+        width:60vw;
+    }
+    .photo{
+        height:220px;
+        width:230px;
+        border-radius:50%;
+        border:5px solid brown;
+        float:left;
+    }
+    .photo img
+    {
+        height:100%;
+        width:100%;
+        border-radius:50%;
+        border:5px solid white;
+    }
+    .info
+    {
+        float:left;
+    }
+</style>
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<div class="outer">
+    <div class="div1">
+        <div class="photo">
+            <img src="{{details.image.url}}" alt="">
+        </div>
+        <div class="info ms-5 mt-4">
+            <p class="fs-4 fw-bold mb-1">{{details.agent_name}}</p>
+            <p class="fs-5 mb-1 mt-2"><u>Conatct:</u></p>{{details.agent_contact}}
+            <p class="fs-5 mb-1 mt-2"><u>Operating since</u>:</p>{{details.operating_since}}
+        </div>
+
+    </div>
+    <hr>
+    <div class="div2 ps-5 mb-3">
+        <!-- <p class="fs-5 mb-1 mt-4 "><u>Operating since</u>:</p> &nbsp;&nbsp;&nbsp; {{details.joined_on}} -->
+        <p class="fs-5 mb-1 mt-4 "><u>Operating Cities:</u>  </p> &nbsp; &nbsp;&nbsp;{{details.operating_city}}
+        <p class="fs-5 mb-1 mt-2 "><u>Operating locations:</u> </p> &nbsp; &nbsp;&nbsp;{{details.operating_locations}} 
+        <p class="fs-5 mb-1 mt-2 "><u>Deals in:</u> </p>  &nbsp; &nbsp;&nbsp;{{details.deals_in}}
+    </div>
+    <hr>
+    <div class="div3 ps-5">
+        <p class="fs-5 mb-1 mt-2"><u>Email:</u></p> {{details.agent_email}}
+        <p class="fs-5 mb-1 mt-2"><u>Address:</u></p> {{details.address}}
+
+    </div>
+</div>
+
+{% endblock main %}

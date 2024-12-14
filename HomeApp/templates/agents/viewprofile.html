@@ -1,0 +1,30 @@
+{% extends 'agents/agentdashboard.html' %}
+{% block main %}
+
+    <style>
+        .info p{
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="info">
+        <u><h2 class="text-center text-warning">PROFILE</h2></u>
+        <p>Image:</p><img src="{{info.image.url}}" alt="" height="200px" width="250px">
+        <p>Name:</p>{{info.agent_name}} <hr>
+        <p>Contact No: </p>{{info.agent_contact}} <hr>
+        <p>Email:</p> {{info.agent_email}} <hr>
+        <p>Date of joining: </p>{{info.joined_on}} <hr>
+        <p>City: </p>{{info.city}} <hr>
+        <p>Address:  </p>{{info.address}} <hr>
+        <p>Operating cities: </p>   {{info.operating_city}} <hr>
+        <p>Operating Location: </p>{{info.operating_locations}} <hr>
+        <p>Areas you deal in:  </p>{{info.deals_in}} <hr>
+        <p>Operating Since: </p>{{info.operating_since}} <hr>
+
+    </div>
+    
+
+
+{% endblock main %}

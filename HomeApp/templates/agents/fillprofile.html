@@ -1,0 +1,18 @@
+{% extends 'agents/agentdashboard.html' %}
+{% block main %}
+{% include 'message.html'%}
+
+
+<u><h2 class="text-center mb-5">Fill this form to complete your profile.</h2>
+</u>
+<div style="width:50vw; margin: 10px auto;"> 
+    <form action="{% url 'fill_profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+    <p class="text-center">    <input type="submit" value="Submit" class="btn btn-outline-warning fw-bold mt-3 mx-auto">
+    </p>
+    </form>
+</div>
+
+
+{% endblock main %}

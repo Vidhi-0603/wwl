@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% block main %}
+{% load static %}
+<style>
+    
+    .section
+    {
+        height:78vh;
+        width:100vw;
+        position: relative;
+    }
+    .toppic{
+        height:100%;
+        width:100%;
+    }
+    .pic
+    {
+        height:48vh;
+        width:100%;
+        border-radius: 20px;
+        box-shadow: 7px 7px 12px rgb(115, 114, 114);
+    }
+    .cover
+    {
+        height:75vh;
+        width:100vw;
+        background-color: rgba(109, 65, 36, 0.4);
+        position: absolute;
+        top:0;
+    }
+    .cover div{
+        margin-top: 200px;
+        font-size: 60px;
+        color:rgb(248, 231, 210);
+        text-transform:uppercase;
+    }
+    .space
+    {
+        height: 100px;
+    }
+</style>
+    <div class="outer">
+        
+            
+            <div class="section">
+                <img src="{% static 'Images/a1.jpg' %}" alt="..." class="toppic">
+            </div>
+            <div class="cover">
+                <div class="text-center fw-bold">About Us</div>
+            </div>
+      
+        <!---Block start-->
+        <div class="space"></div>
+      <div class="row">
+        <div class="col-sm-1"></div>
+          <div class="col-sm-5 pt-5">
+            <img src="{% static 'Images/a2.png' %}" class="d-block pic" alt="...">
+          </div>
+          <div class="col-sm-4 pt-5 ms-5">
+            <h1 class="mt-5">Why WWL?</h1>
+            <p class="mt-3">From luxurious estates nestled in scenic landscapes to cozy urban apartments with vibrant city views, 
+              World Wide Land offers a diverse portfolio of properties to suit every lifestyle and preference. </p>
+          </div>
+
+      </div>
+      <div class="space"></div>
+
+      <div class="row">
+        <div class="col-sm-1"></div>
+          <div class="col-sm-5 pt-5 text-center">
+            <h1 class="mt-5">Experience the World Wide Land difference</h1>
+            <p class="mt-3">With a global network of experienced agents and a portfolio of diverse properties, we cater to every taste and budget.Where exceptional properties and unparalleled service come together to redefine your real estate experience.
+               Welcome home.</p>
+          </div>
+
+          <div class="col-sm-5 pt-5 mb-5 mx-5">
+            <img src="{% static 'Images/a3.jpg' %}" class="d-block pic" alt="...">
+          </div>
+      </div>
+    </div>
+    <div class="space"></div>
+
+    {%include 'footer.html'%}      
+{% endblock main %}

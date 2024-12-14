@@ -1,0 +1,127 @@
+{% extends 'agents/agentdashboard.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+<style>
+    body{
+        background-color:rgba(235, 207, 135, 0.2)
+    }
+    .outer
+    {
+        width:70vw;
+        margin:auto;
+        border:1px solid;
+    }
+    .space
+    {
+        height:70px;
+    }
+    .price
+    {
+        padding:3px 5px;
+        border-right: 2px solid rgba(110, 104, 104, 0.5);
+    }
+    img{
+        height: 300px;
+        width: 350px;
+        background-color: aqua;
+        object-fit:fill;
+    }
+    #display2
+    {
+        display:none;
+    }
+</style>
+
+
+    <div class="outer mt-3" >
+        <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+            <div class="col-sm-2 price">
+                <h2>&#8377; {{details.price}}</h2>
+                <span class="fs-5 ps-2 d-none" id="check">{{details.action}}</span>
+                <span class="fs-5 ps-2" id="display"></span>
+            </div>
+            <div class="col-sm-4">
+                <p class="fs-4">{{details.title}}<br>
+                {{details.city}}</p>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{{details.image.url}}" alt="">
+            </div>
+            <div class="col-sm-8">
+                <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+                    <div class="col-sm-6 pt-2" style="border-right: 2px solid rgba(201, 189, 189, 0.5);">
+                        <div class="row"><p><span class="fs-5 fw-bold">Area(sqft):</span><br>{{details.area}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">City:</span><br>{{details.city}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">Description:</span><br>{{details.description}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">Type:</span><br>{{details.type}}</p></div>
+                    </div>
+                    <span class="fs-5 d-none" id="check2">{{details.type}}</span>
+                    <div class="col-sm-6 pt-2" id="display2">
+                        <div class="row"><p><span class="fs-5 fw-bold">Furnishing:</span><br>{{details.furnished}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">Bedrooms:</span><br>{{details.bedrooms}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">Bathrooms:</span><br>{{details.bathrooms}}</p></div>
+                        <div class="row"><p><span class="fs-5 fw-bold">Posted on:</span><br>{{details.created}}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+            <h3 class="text-center mb-4">location Details:</h3>
+            <div class="col-sm-7" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Address:</span><br>{{details.location}}</p></div>
+            <div class="col-sm-5" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">State:</span><br>{{details.state}}</p></div>
+        </div>
+        <div class="space"></div>
+        <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+            <h3 class="text-center mb-4">Owner Details:</h3>
+            <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Name:</span><br>{{details.name}}</p></div>
+            <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Contact:</span><br>{{details.contact}}</p></div>
+            <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Email:</span><br>{{details.owner_email}}</p></div>
+        </div>
+        <div class="space"></div>
+        <div class="row text-center">
+            <h3>Enquiry Form</h3>
+            <p>Enquire about property directly from owner</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 mx-auto py-5 px-4 mb-5" style="background-color:rgba(209, 190, 142, 0.4); border-radius:10px;">
+                <form method="post" action="{% url 'enquiry' details.property_id %}" data-product="{{ details.property_id }}">
+                    {% csrf_token %}
+                    <div class="mb-5">
+                        <label for="message">Enter Message:</label>
+                        {{ form.message }}
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="sender_name">Enter your name:</label>
+                        {{ form.sender_name }}
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="sender_contact">Enter Contact No:</label>
+                        {{ form.sender_contact }}
+                    </div>
+                    
+                    <input type="hidden" name="next" value="{{request.get_full_path}}">
+                    
+                    <center><button class="btn btn-outline-warning fw-bold" type="submit">Submit</button></center>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    if (document.getElementById("check2").innerHTML=="Flat/Apartment" || "PG/Co-Living")
+    {
+        document.getElementById("display2").style.display="block";
+    }
+    if (document.getElementById("check").innerHTML=="rent")
+    {
+        document.getElementById("display").innerHTML="PER MONTH";
+    }
+</script>
+{% endblock main %}

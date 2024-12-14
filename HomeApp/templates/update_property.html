@@ -1,0 +1,139 @@
+{% extends 'index.html' %}
+{% block main %}
+{%include 'message.html'%}
+
+<div style="height:12vh; width:100vw; background-color:rgb(170, 119, 23);"></div>
+<style>
+    body{
+        background-color:rgba(235, 207, 135, 0.2)
+    }
+    .outer
+    {
+        width:70vw;
+        margin:30px auto;
+        border:1px solid;
+    }
+    .space
+    {
+        height:70px;
+    }
+    .price
+    {
+        padding:3px 5px;
+        border-right: 2px solid rgba(110, 104, 104, 0.5);
+    }
+    img{
+        height: 300px;
+        width: 350px;
+        background-color: aqua;
+        object-fit:fill;
+    }
+</style>
+
+    <div class="outer" >
+        <form method="post" action="{% url 'update_property' details.property_id %}" data-product="{{ details.property_id }}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+                <div class="col-sm-2 price pe-2">
+                    <h2>&#8377; </h2>
+                    <input type="number" name="price" value="{{details.price}}" class="form-control">
+                    <span class="fs-5 d-none" id="check">{{details.action}}</span>
+                    <span class="fs-5 ps-2" id="display"></span>
+                </div>
+                <div class="col-sm-5 pt-2 pb-0">
+                    <p><span class="fs-5 fw-bold">Title:</span><input type="text" name="title" value="{{details.title}}" class="form-control mt-1">
+                        <span class="fs-5 fw-bold">City:</span><input type="text" name="city" value="{{details.city}}" class="form-control mt-1"></p>
+                </div>
+                <div class="col-sm-5 pt-2 pb-0">
+                    <p>
+                        <span class="fs-5 fw-bold">Description:</span><textarea name="description" cols="30" rows="2" class="form-control mt-1">{{details.description}}</textarea>
+                    </p>
+                </div>
+
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="{{details.image.url}}" alt="">
+
+                </div>
+                
+                <div class="col-sm-8">
+                    <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+                        <div class="col-sm-6 pt-3" style="border-right: 2px solid rgba(201, 189, 189, 0.5);">
+                            <div class="row"><p><span class="fs-5 fw-bold">Area(sqft):</span><br><input type="number" name="area" value="{{details.area}}" class="form-control"></p></div>
+                            <div class="row"><p><span class="fs-5 fw-bold">Action:</span><br><input type="text" name="action" value="{{details.action}}" class="form-control"></p></div>
+                            <div class="row"><p><span class="fs-5 fw-bold">Image:</span><br>{{form.image}}</div>
+                            <div class="row">
+                                <p>
+                                <span class="fs-5 fw-bold">Type:</span><br>
+                                <select name="type"  class="form-control">
+                                    <option value="{{details.type}}">{{details.type}}</option>
+                                    <option value="Commercial Space">Commercial Space</option>
+                                    <option value="Flat/Apartment/House">Flat/Apartment/House</option>
+                                    <option value="Plot/Land">Plot/Land</option>
+                                    <option value="Agricultural Land">Agricultural Land</option>
+                                    <option value="PG/Co-Living">PG/Co-Living</option>
+                                    <option value="Industrial Land">Industrial Land</option>
+                                    <option value="Farmland">Farmland</option>
+                                </select>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <span class="fs-5 ps-2 d-none" id="check2">{{details.type}}</span>
+                        <div class="col-sm-6 pt-3" id="display2">
+                            <div class="row">
+                                <p>
+                                    <span class="fs-5 fw-bold">Furnishing:</span><br>
+                                    <select name="furnished" value="{{details.furnished}}" class="form-control">
+                                        <option value="{{details.furnished}}">{{details.furnished}}</option>                                        
+                                        <option value="Furnished">Furnished</option>
+                                        <option value="Not Furnished">Not Furnished</option>
+                                        <option value="Semi Furnished">Semi Furnished</option>
+                                        <option value="Furnished">Furnished</option>
+                                        <option value="N/A">N/A</option>
+                                        
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="row"><p><span class="fs-6 fw-bold">Bedrooms(write '0' if not applicable):</span><br><input type="number" name="bedrooms" value="{{details.bedrooms}}" class="form-control"></p></div>
+                            <div class="row"><p><span class="fs-6 fw-bold">Bathrooms(write '0' if not applicable):</span><br><input type="number" name="bathrooms" value="{{details.bathrooms}}" class="form-control"></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+                <h3 class="text-center mb-4">Location Details:</h3>
+                <div class="col-sm-7" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Address:</span><br><input type="text" name="location" value="{{details.location}}" class="form-control"></p></div>
+                <div class="col-sm-5" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">State:</span><br><input type="text" name="state" value="{{details.state}}" class="form-control"></p></div>
+            </div>
+            <div class="space"></div>
+            <div class="row mx-0" style="background-color:rgba(209, 190, 142, 0.4);">
+                <h3 class="text-center mb-4">Owner Details:</h3>
+                <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Name:</span><br><input type="text" name="name" value="{{details.name}}" class="form-control"></p></div>
+                <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Contact:</span><br><input type="number" name="contact" value="{{details.contact}}" class="form-control"></p></div>
+                <div class="col-sm-4" style="border-right: 2px solid rgba(201, 189, 189, 0.5);"><p><span class="fs-5 fw-bold">Email:</span><br><input type="email" name="owner_email" value="{{details.owner_email}}" class="form-control"></p></div>
+            </div>
+            <div class="space"></div>
+            <center><button class="btn btn-outline-warning mb-5 fw-bold" type="submit">Update</button></center>
+
+        </form>
+    </div>
+
+
+
+
+    <script>
+        if (document.getElementById("check2").innerHTML=="Flat/Apartment/House" || "PG/Co-Living")
+        {
+            document.getElementById("display2").style.display="block";
+        }
+        if (document.getElementById("check").innerHTML=="rent")
+        {
+            document.getElementById("display").innerHTML="PER MONTH";
+        }
+    </script>
+
+{% endblock main %}

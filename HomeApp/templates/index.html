@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%include 'message.html'%}
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Wide Land</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.bundle.js' %}" rel="javascript" type="text/javascript"></script>
+</head>
+<body style="overflow-x: hidden;">
+    <div class="container-fluid px-0">
+
+        <!--header starts-->
+        <div class="row nbar mx-0 fixed-top">
+            <!--navbar starts-->
+            <div class="col-sm-11 pe-0">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid py-2 fs-5">
+                        <a class="navbar-brand fs-3 ps-2 fw-bold text-white" href="#">World Wide Land</a>
+                        <button class="navbar-toggler ms-auto me-3" style="z-index:99;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto me-2">
+                            <li class="nav-item pe-2">
+                                <a class="nav-link active text-white" aria-current="page" href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li class="nav-item pe-2">
+                                <a class="nav-link text-white" href="{% url 'aboutus' %}">About Us</a>
+                            </li>
+                            <li class="nav-item pe-2">
+                                <a class="nav-link text-white" href="{% url 'contact_us' %}">Contact</a>
+                            </li>
+                            <li class="nav-item pe-2">
+                                <a class="nav-link text-white " href="{% url 'postproperty' %}">Post Property</a>
+                            </li>
+                            
+                        </ul>        
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!--navbar ends-->
+
+            <!--User profile starts-->
+            <div class="col-sm-1 py-3 ps-0">
+                <nav class="navbar">
+                      <button class="navbar-toggler py-2 px-0 border border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                        <i class="fa-solid fa-circle-user fa-2xl" style="color:rgb(235, 162, 26);"></i>
+                      </button>
+                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                        <div class="offcanvas-header">
+                          <button type="button" class="btn-close btn-close-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                          Welcome {{user.username}}
+                        </div>
+                        <div class="offcanvas-body">
+                          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item pb-3 border-bottom a">
+                                <a class="btn btn-warning" href="{% url 'register' %}" style="text-decoration:none;">Login/Register</a>
+                            </li>
+                            <li class="nav-item mt-3 pb-3 boxgrp border-bottom">
+                                <div class="d-flex">
+                                    <div class="box"><a href="{% url 'postproperty' %}">Upload property</a></div>
+                                    <div class="box"><a href="{% url 'view_posted_property'%}">Posted property</a></div>
+                                    <div class="box"><a href="{% url 'enquired_property' %}">Enquired property</a></div>
+                                </div>
+                            </li>
+                            <hr>
+                            <u><span>Explore Properties to:</span></u>
+                            <li class="nav-item mt-2">
+                                <a  href="{% url 'buy' %}" style="text-decoration:none;">Buy</a>
+                            </li> 
+                            <li class="nav-item mt-1">
+                                <a  href="{% url 'rent' %}" style="text-decoration:none;">Rent</a>
+                            </li> 
+                            <hr>
+                            <u><span>Explore:</span></u>
+                            <li class="nav-item mt-2">
+                                <a  href="{% url 'plots' %}" style="text-decoration:none;">Plots/Land</a>
+                            </li> 
+                            <li class="nav-item mt-1">
+                                <a  href="{% url 'flats' %}" style="text-decoration:none;">Flats/Apartments</a>
+                            </li> 
+                            <li class="nav-item mt-1">
+                                <a  href="{% url 'pg_coliving' %}" style="text-decoration:none;">PG/Co-Living</a>
+                            </li> 
+                            <li class="nav-item mt-1">
+                                <a  href="{% url 'CommercialSpace' %}" style="text-decoration:none;">Commercial Space</a>
+                            </li> 
+                            <hr>
+                             <li class="nav-item pb-3 mt-3 border-bottom a">
+                                <a class="btn btn-warning" href="{% url 'agent_register' %}" style="text-decoration:none;">Login/Register as Agent</a>
+                            </li> 
+                            <li class="nav-item pb-3 mt-3 border-bottom a">
+                                <a class="btn btn-warning" href="{% url 'logout' %}" style="text-decoration:none;">Logout</a>
+                            </li>
+                          </ul>
+                        
+                        </div>
+                      </div>
+                  </nav>               
+            </div>
+            <!--User profile ends-->
+
+        </div>
+        {% block main %}
+        <div class="pic">
+            <div class="overscreen">
+            <div class="row header">
+                <div class="col-lg-6 tagline py-5">
+                    <h1>Where dreams find their address.</h1>
+                    <h3><i>Guiding you home...</i></h3>
+                </div>
+                <!--search box starts-->
+                <div class="col-lg-6">
+                    <div class="searchbox mx-auto fs-5">
+                        <form action="{% url 'search' %}" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <label for="type">Property Type:</label><br/>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="Flat/Apartment/House">Flat/Apartment/House</option>
+                                    <option value="Commercial Space">Commercial Space</option>
+                                    <option value="Plots/Land">Plots/Land</option>
+                                    <option value="Agricultural Land">Agricultural Land</option>
+                                    <option value="Industrial Space">Industrial Space</option>
+                                    <option value="PG/Co-Living">PG/Co-Living</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Location">Property Location:</label><br/>
+                                <select name="location" id="Location" class="form-control">
+                                    <option value="Lucknow">Lucknow</option>
+                                    <option value="Kanpur">Kanpur</option>
+                                    <option value="Unnao">Unnao</option>
+                                    <option value="Varanasi">varanasi</option>
+                                    <option value="Ayodhya">Ayodhya</option>
+                                    <option value="Agra">Agra</option>
+                                    <option value="Barabanki">Barabanki</option>
+                                    <option value="Gorakhpur">Gorakhpur</option>
+                                    <option value="Bijnor">Bijnor</option>
+                                    <option value="Hardoi">Hardoi</option>
+                                    <option value="Bareilly">Bareilly</option>
+                                    <option value="Gaziabad">Gaziabad</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="budget">Budget:</label><br/>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="min">min:</label>
+                                        <input type="number" name="min" id="min" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <label for="max">max:</label>
+                                        <input type="number" name="max" id="max" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="area">Area(sqft):</label><br/>
+                                <span id="value">0</span>
+                                <input type="range" id="area" name="area" min="1" max="10000">
+                            </div>
+                            <button class="btn btn-outline-dark fw-bold text-center" type="submit">Search</button>
+                        </form>
+                    </div>
+
+                </div>
+                <!--search box ends-->
+            </div>
+        </div>
+        </div>
+        <!--header ends-->
+
+        <!--options starts-->
+        <div class="row">
+            <div class="col-lg-12 text-center pt-5"><h4 style="text-transform: uppercase;">Get started with exploring real estate options</h4></div>
+        </div>
+        <div class="options bg-warning">
+            
+            <div id="carouselExampleIndicators" class="carousel slide card-container">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                <div class="carousel-inner" style="text-transform: uppercase;">
+                  <div class="carousel-item active">
+                    <div class="card-slide">
+                        <a href="{% url 'buy' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/p10.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Buy</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'rent' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/p5.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Rent</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'postproperty' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/sell.jpeg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                <p class="card-text text-center fw-bold">Sell Your Property</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card-slide">
+                        <a href="{% url 'plots' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/p11.avif' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Plots/Lands</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'pg_coliving' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/pg.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">PG/Co-living</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'flats' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/p2.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Flats/Apartments</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card-slide">
+                        <a href="{% url 'AgriculturalLand' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/plot.avif' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Agricultural Land</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'CommercialSpace' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/office.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Commercial Space</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{% url 'view_agents' %}" style="text-decoration:none;">
+                            <div class="card card-item">
+                                <div class="card-image">
+                                    <img src="{% static 'Images/agent.png' %}" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body">
+                                  <p class="card-text text-center fw-bold">Explore Agents</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <!--options ends-->
+
+        <!--property listings starts-->
+        <div class="row mt-5" style="text-transform: uppercase;">
+            <div class="col-lg-12 text-center pt-5"><h4 style="text-transform: uppercase;">Popular Properties</h4></div>
+        </div>
+        <div class="row property-slide">
+            {% for property in propertys %}
+                <div class="col-md-3">
+                    <div class="card property border border-0">
+                        <div class="property-image">
+                            <img src="{{property.image.url}}" alt="" class="card-img-top">
+                        </div>
+                        <div class="property-content card-body ps-3 pt-3">
+                            <p class="description fs-5 mb-0">{{property.title}}</p>
+                            <p class="price fw-bold fs-4 mb-0">&#8377; {{property.price}} | {{property.area}} sqft</p>
+                            <p class="location fs-5">{{property.city}}</p>
+                            <div class="view-more">
+                                <a href="{% url 'view_details' property.property_id %}" data-product="{{ property.property_id }}" class="btn btn-outline-warning rounded-pill py-1">View details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="height:20px; width:15vw; margin:0px auto;" class="prp">
+            <a href="{% url 'properties' %}" class="btn btn-outline-warning fw-bold fs-5" style="text-decoration:none;">View more properties</a>
+        </div>
+        <!--property listings ends-->
+
+        <!-- Agents start-->
+        <div class="row mt-5" style="text-transform: uppercase;">
+            <div class="col-lg-12 text-center pt-5"><h4 style="text-transform: uppercase;">Popular Agents</h4></div>
+        </div>
+
+        <div class="row property-slide">
+            {% for agent in agents %}
+                <div class="col-md-3">
+                    <div class="card property border border-1 my-3">
+                        <div class="property-image">
+                            <img src="{{agent.image.url}}" alt="" class="card-img-top">
+                        </div>
+                        <div class="property-content card-body ps-3 pt-3">
+                            <h5 class="card-title"><span class="fw-bold"><u>Name:</u></span> {{agent.agent_name}}</h5>
+                            <p class="card-text"><span class="fw-bold"><u>Operating since:</u></span> {{agent.operating_since}}</p>
+                            <div class="">
+                                <a href="{% url 'view_agent_details' agent.id %}" data-product="{{ agent.id }}" class="btn btn-outline-warning rounded-pill py-1">View details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div style="height:20px; width:15vw; margin:20px auto;" class="prp">
+            <a href="{% url 'view_agents' %}" class="btn btn-outline-warning fw-bold fs-5" style="text-decoration:none;">View more Agents</a>
+        </div>
+    <!-- Agents end -->
+        
+        <div class="explore-area">
+            <h1>home for every dream</h1>
+            <div class="row" style="margin-bottom:100px;">
+                <div class="col-sm-6">
+                    <div class="image">
+                        <img src="{% static "Images/p8.webp" %}" alt="">
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6 ps-5">
+                    <div class="text">
+                        <p style="text-transform: uppercase; color:#f08811;">Buy a home</p>
+                        <p style="font-size: 35px; font-weight:bold;">Find the best home for you</p>
+                        <p>Explore from Apartments, land, builder floors, villas and more</p>
+                        <a href="{% url 'buy' %}" class="btn btn-outline-warning mt-3 fw-bold" style="text-decoration:none;">Explore Buying Options</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom:100px;">
+                
+                <div class="col-sm-6">
+                    <div class="text-2 text-end">
+                        <p style="text-transform: uppercase; color:#f08811;">Buy Plots/land</p>
+                        <p style="font-size: 35px; font-weight:bold;">Residential & Commercial Plots/Land</p>
+                        <p>Explore Residential, Agricultural, Industrial and Commercial Plots/Land</p>
+                        <a href="{% url 'plots' %}" class="btn btn-outline-warning mt-3 fw-bold" style="text-decoration:none;">Explore Plots/Lands</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 ps-4">
+                    <div class="image ms-5">
+                        <img src="{% static "Images/plot.avif" %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom:100px;">
+                <div class="col-sm-6">
+                    <div class="image">
+                        <img src="{% static "Images/rent.webp" %}" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-6 ps-5">
+                    <div class="text">
+                        <p style="text-transform: uppercase; color:#f08811;">Rent a home</p>
+                        <p style="font-size: 35px; font-weight:bold;">Rental Homes for Everyone</p>
+                        <p>Explore from Apartments, builder floors, villas and more</p>
+                        <a href="{% url 'rent' %}" class="btn btn-outline-warning mt-3 fw-bold" style="text-decoration:none;">Explore Renting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--explore area-->
+        {%include 'footer.html'%}
+        {% endblock main %}
+    </div>
+ 
+    <script>
+        var Area = document.getElementById("area");
+        var output = document.getElementById("value");
+        output.innerHTML = Area.value;
+        
+        Area.oninput = function() {
+          output.innerHTML = this.value;
+        }
+    
+        function validate()
+        {
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            if (username.value=="" || username.value==null)
+            {
+                alert('Please Enter Userid');
+                username.focus();            
+            }
+            else if(password.value=="" || password.value==null)
+            {
+                alert('Please Enter Password');
+                password.focus();  
+            }
+            else
+            {
+                document.getElementById("frmlogin").submit();
+            }
+        }
+    </script>
+</body>
+</html>
